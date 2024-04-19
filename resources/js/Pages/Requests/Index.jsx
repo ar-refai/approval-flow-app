@@ -3,7 +3,8 @@ import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
 
-const Index = ({auth , requests}) => {
+const Index = ({auth , requests ,queryParams}) => {
+  console.log(queryParams);
   return (
     <Authenticated
       user={auth.user}
@@ -17,7 +18,7 @@ const Index = ({auth , requests}) => {
       {/* <pre className="text-white">
         {JSON.stringify(requests,undefined,2)}
       </pre> */}
-    <Table requests={requests}/>
+    <Table requests={requests} queryParams={queryParams}/>
     </Authenticated>
   );
 };

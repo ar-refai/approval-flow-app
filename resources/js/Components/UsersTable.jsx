@@ -4,9 +4,9 @@ import React from 'react'
 function UsersTable({users}) {
   return (
     <div className="px-4 pt-6 ">
-    <pre className='text-white'>
+    {/* <pre className='text-white'>
       {JSON.stringify(users,undefined,2)}
-    </pre>
+    </pre> */}
 
       <div className="p-4  bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
         {/* <!-- Card header --> */}

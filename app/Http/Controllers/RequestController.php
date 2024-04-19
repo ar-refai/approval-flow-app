@@ -15,10 +15,20 @@ class RequestController extends Controller
      */
     public function index()
     {
+        $query = Request::query();
+        if (request("name")) {
+            $query->where("item_name", "like", "%" . request("name") . "%");
+        }
+        if (request("status")) {
+            $query->where("status", request("status"));
+        }
 
-        $requests = Request::query()->paginate(10);
+        // Fetch paginated requests using the $query variable
+        $requests = $query->paginate(10);
+
         return inertia('Requests/Index', [
             "requests" =>  RequestResource::collection($requests),
+            "queryParams" =>  request()->query() ?: null
         ]);
     }
 
