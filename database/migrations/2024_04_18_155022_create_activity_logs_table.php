@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('entity_type');
             $table->unsignedBigInteger('entity_id')->nullable();
             $table->text('details')->nullable();
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
 
             // Define foreign key constraint
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

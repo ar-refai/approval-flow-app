@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ActivityLog;
 use App\Models\Request;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,13 +17,15 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $purchaser = User::factory()->create([
+        $requester = User::factory()->create([
             'name' => 'abdelrahman',
             'email' => 'team.man00@gmail.com',
             'password' => bcrypt('123456789'),
             'role' => 'requester' ,
             'email_verified_at' =>time()
         ]);
-        Request::factory()->count(50)->create(['user_id' => $purchaser->id]);
+        Request::factory()->count(20)->create(['user_id' => $requester->id]);
+        ActivityLog::factory()->count(30)->create(['user_id' => $requester->id]);
+
     }
 }
