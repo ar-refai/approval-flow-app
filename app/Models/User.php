@@ -19,12 +19,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
-        'role', // Add role to mass assignable attributes
-    ];
+        'role',
 
+        // Add role to mass assignable attributes
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *

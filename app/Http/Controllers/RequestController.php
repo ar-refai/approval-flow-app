@@ -15,7 +15,10 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $query = Request::query();
+        // sort by
+        $sortField = request("sort_field" , "created_at");
+        $sortDirection = request("sort_direction" , "desc");
+        $query = Request::query(); // main query string
         if (request("name")) {
             $query->where("item_name", "like", "%" . request("name") . "%");
         }
@@ -24,7 +27,9 @@ class RequestController extends Controller
         }
 
         // Fetch paginated requests using the $query variable
-        $requests = $query->paginate(10);
+        $requests = $query
+                ->orderBy($sortField , $sortDirection)
+                ->paginate(10);
 
         return inertia('Requests/Index', [
             "requests" =>  RequestResource::collection($requests),
