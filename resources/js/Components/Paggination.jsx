@@ -3,7 +3,7 @@ import React from 'react'
 
 const Paggination = ({links}) => {
   return (
-    <nav className='text-center mt-4 text-gray-200'>
+    <nav className='text-center mt-4 text-gray-200 bg-gray-900 w-fit mx-auto rounded-xl px-2 py-2'>
       {links.map(link => (
         <Link
         preserveScroll

@@ -3,7 +3,6 @@ import React from "react";
 import Paggination from "./Paggination";
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
-import { BeakerIcon } from '@heroicons/react/16/solid';
 import { ChevronUpIcon , ChevronDownIcon } from '@heroicons/react/16/solid';
 import TableFooter from "./TableFooter";
 
@@ -39,6 +38,17 @@ function RequestsTable({ requests, queryParams = null }) {
     }
     router.get(route("request.index"), queryParams);
   };
+  // DELETE REQUESTs
+  function deleteRequest(request) {
+    if (!window.confirm("Are you sure you want to delete the request?")) {
+      return;
+    }else{
+        console.log(request.id);
+        router.delete(route("request.destroy", request.id));
+      }
+
+  };
+
   return (
     <div className="px-4 pt-6 ">
       <div className="p-4  bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
@@ -200,8 +210,17 @@ function RequestsTable({ requests, queryParams = null }) {
                         <div className="flex items-center justify-between gap-1 cursor-pointer hover:text-gray-400	">
                         Status
                         <div>
-                        <ChevronUpIcon  className="w-4"/>
-                        <ChevronDownIcon className="w-4 -mt-2"/>
+                        <ChevronUpIcon  className=
+                        {
+                          "w-4 " +
+                          ((queryParams.sort_field === "status" && queryParams.sort_direction === "asc") ? " text-blue-300" : "")
+                        }
+                          />
+                        <ChevronDownIcon className={
+                          "w-4 -mt-2 " +
+                          ((queryParams.sort_field == "status" && queryParams.sort_direction === "desc") ? " text-blue-300" : "")
+
+                          }/>
                         </div>
                         </div>
                       </th>
@@ -364,18 +383,18 @@ function RequestsTable({ requests, queryParams = null }) {
                             }
                           })()}
                         </td>
-                        <td className="p-4 text-sm font-normal  flex flex-col">
+                        <td className="p-4  text-sm font-normal  flex flex-col gap-2 justify-center items-center">
                           <Link
                             className="text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-blue-300 underline  hover:no-underline"
                             href={route("request.edit", req.id)}
                           >
-                            Edit Status
+                            Edit
                           </Link>
                           <Link
-                            className="text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-red-300 underline hover:no-underline"
-                            href={route("request.destroy", req.id)}
+                            className="text-gray-500  whitespace-nowrap  dark:text-gray-400 dark:hover:text-red-300 underline hover:no-underline"
+                            onClick={(e) => deleteRequest(req)}
                           >
-                            Delete Status
+                            Delete
                           </Link>
                         </td>
                       </tr>
@@ -388,7 +407,7 @@ function RequestsTable({ requests, queryParams = null }) {
           </div>
         </div>
         {/* <!-- Card Footer --> */}
-       <TableFooter />
+      <TableFooter />
       </div>
       {/* <pre className="text-white">
         {JSON.stringify(requests,undefined,2)}

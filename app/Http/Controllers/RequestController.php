@@ -7,6 +7,7 @@ use App\Models\Request;
 use App\Http\Requests\StoreRequestRequest;
 use App\Http\Requests\UpdateRequestRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
 {
@@ -16,8 +17,8 @@ class RequestController extends Controller
     public function index()
     {
         // sort by
-        $sortField = request("sort_field" , "created_at");
-        $sortDirection = request("sort_direction" , "desc");
+        $sortField = request("sort_field", "created_at");
+        $sortDirection = request("sort_direction", "desc");
         $query = Request::query(); // main query string
         if (request("name")) {
             $query->where("item_name", "like", "%" . request("name") . "%");
@@ -28,12 +29,13 @@ class RequestController extends Controller
 
         // Fetch paginated requests using the $query variable
         $requests = $query
-                ->orderBy($sortField , $sortDirection)
-                ->paginate(10);
+            ->orderBy($sortField, $sortDirection)
+            ->paginate(10);
 
         return inertia('Requests/Index', [
             "requests" =>  RequestResource::collection($requests),
-            "queryParams" =>  request()->query() ?: null
+            "queryParams" =>  request()->query() ?: null,
+            "success" => session("success")
         ]);
     }
 
@@ -42,7 +44,8 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+
+        return inertia('Requests/Create', []);
     }
 
     /**
@@ -50,7 +53,15 @@ class RequestController extends Controller
      */
     public function store(StoreRequestRequest $request)
     {
-        //
+        // Validate the incoming request data
+        $data = $request->validated();
+        $data["user_id"] = Auth::user()->id;
+
+        // Process the validated data (you can save it to the database, etc.)
+        // For example, if you want to create a new request record:
+        $request = Request::create($data);
+        // Redirect to the intended route after processing the form submission
+        return to_route('request.index')->with("success", "The request was created successfully!");
     }
 
     /**
@@ -66,7 +77,9 @@ class RequestController extends Controller
      */
     public function edit(Request $request)
     {
-        //
+        return inertia('requset/edit',[
+            "request" => new RequestResource($request),
+        ]);
     }
 
     /**
@@ -80,8 +93,11 @@ class RequestController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
-    {
-        //
-    }
+    public function destroy(Request$request)
+{
+    $request->delete();
+
+    return redirect()->route('request.index')
+                ->with("success", "The request has been successfully deleted!");
+}
 }
