@@ -42,10 +42,9 @@ function RequestsTable({ requests, queryParams = null }) {
   function deleteRequest(request) {
     if (!window.confirm("Are you sure you want to delete the request?")) {
       return;
-    }else{
-        console.log(request.id);
+    }
         router.delete(route("request.destroy", request.id));
-      }
+
 
   };
 
@@ -390,12 +389,12 @@ function RequestsTable({ requests, queryParams = null }) {
                           >
                             Edit
                           </Link>
-                          <Link
+                          <button
                             className="text-gray-500  whitespace-nowrap  dark:text-gray-400 dark:hover:text-red-300 underline hover:no-underline"
                             onClick={(e) => deleteRequest(req)}
                           >
                             Delete
-                          </Link>
+                          </button>
                         </td>
                       </tr>
                     ))}
