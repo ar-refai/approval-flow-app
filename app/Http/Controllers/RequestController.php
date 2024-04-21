@@ -32,6 +32,22 @@ class RequestController extends Controller
             ->orderBy($sortField, $sortDirection)
             ->paginate(10);
 
+        // Purchaser Sees Fulfiled requests and accepteed ones
+        if(Auth::user()->role === "purchaser"){
+            $requests = $query
+            ->where("status", "fulfilled")
+            ->orWhere("status", "accepted")
+            ->orderBy($sortField, $sortDirection)
+            ->paginate(10);
+        }
+        // Requester Sees his requested ones
+        elseif(Auth::user()->role === "requester"){
+            $requests = $query
+            ->where("user_id", Auth::user()->id)
+            ->orderBy($sortField, $sortDirection)
+            ->paginate(10);
+
+        }
         return inertia('Requests/Index', [
             "requests" =>  RequestResource::collection($requests),
             "queryParams" =>  request()->query() ?: null,
@@ -55,8 +71,6 @@ class RequestController extends Controller
     {
         // Validate the incoming request data
         $data = $request->validated();
-        $data["user_id"] = Auth::user()->id;
-
         // Process the validated data (you can save it to the database, etc.)
         // For example, if you want to create a new request record:
         $request = Request::create($data);
@@ -77,8 +91,9 @@ class RequestController extends Controller
      */
     public function edit(Request $request)
     {
-        return inertia('requset/edit',[
-            "request" => new RequestResource($request),
+
+        return inertia('Requests/Edit', [
+            'request' => new RequestResource($request),
         ]);
     }
 
@@ -87,7 +102,11 @@ class RequestController extends Controller
      */
     public function update(UpdateRequestRequest $requestUpdate, Request $request)
     {
-        //
+        $data = $requestUpdate->validated();
+        // $data['updated_at']->time();
+        $request->update($data);
+        return to_route('request.index')
+                ->with("success", "The request\"$request->item_name\" was updated successfully");
     }
 
     /**

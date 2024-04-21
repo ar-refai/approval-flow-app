@@ -66,7 +66,7 @@ const Index = ({ auth, requests, queryParams, success }) => {
       {/* <pre className="text-white">
         {JSON.stringify(requests,undefined,2)}
       </pre> */}
-      <Table requests={requests} queryParams={queryParams} />
+      <Table auth={auth} requests={requests} queryParams={queryParams} />
     </Authenticated>
   );
 };

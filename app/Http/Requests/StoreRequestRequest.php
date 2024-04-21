@@ -24,7 +24,8 @@ class StoreRequestRequest extends FormRequest
         return [
             "item_name" => ["required" , "max:255"],
             "description" => ["nullable","string"],
-            "quantity" => ["required" , "integer" ]
+            "quantity" => ["required" , "integer" ],
+            "status" => ["required"]
         ];
     }
 }

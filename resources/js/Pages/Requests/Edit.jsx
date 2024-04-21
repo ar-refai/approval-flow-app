@@ -8,18 +8,22 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import React from "react";
 
 const Edit = ({ auth ,request}) => {
-  const { data, setData, post, errors, reset } = useForm({
-    user_id: request.user_id || "",
-    item_name: request.item_name || "",
-    description: request.description || "",
-    quantity: request.quantity || "",
-    status: request.status || "",
+  const { data, setData, put, errors, reset } = useForm({
+    user_id: request.data.created_by.id || "",
+    item_name: request.data.item_name || "",
+    description: request.data.description || "",
+    quantity: request.data.quantity || "",
+    status: request.data.status || "",
+    _method: "PUT",
   });
+  const statusOptions = auth.user.role === "purchaser" ? ['fulfilled'] : [ 'accepted' , 'inprogress',  'pending' , 'stalled' , 'rejected',];
+  // console.log(data );
+  console.log(request );
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    post(route("request.store"));
+    put(route("request.update",request.data.id));
   };
 
   return (
@@ -29,7 +33,10 @@ const Edit = ({ auth ,request}) => {
       header={
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-500 leading-tight">
-            Edit Request ({$request.item_name}) :
+            Edit Request :
+            <p className="indent-3">
+              {request.data.item_name}
+            </p>
           </h2>
         </div>
       }
@@ -49,6 +56,7 @@ const Edit = ({ auth ,request}) => {
               <form
               onSubmit={onSubmit}
               className="grid gap-4 lg:gap-y-12 lg:mt-12 items-center gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+
                 <div className="md:col-span-5">
                   <InputLabel className="text-gray-200" htmlFor="req_name">
                     Request Title
@@ -96,18 +104,29 @@ const Edit = ({ auth ,request}) => {
                   <InputError className="mt-2" message={errors.quantity} />
                 </div>
 
-                {/* <div className="md:col-span-4">
+                <div className="md:col-span-4">
                 <InputLabel className="text-gray-200" htmlFor="status">status</InputLabel>
-                <SelectInput name="status" id="status" className="h-10 border mt-1 rounded px-4 w-full bg-gray-700"  >
+                <SelectInput
+                name="status"
+                id="status"
+                className="h-10 border mt-1 rounded px-4 w-full bg-gray-700"
+                defaultValue={data.status}
+                onChange = {(e) => setData("status", e.target.value)}
+                >
                           <option value="">Status</option>
-                          <option value="fulfilled">Fulfilled</option>
+                          {
+                            statusOptions.map((option) =>(
+                              <option key={option} value={option}>{option.toUpperCase()}</option>
+                            ))
+                          }
+                          {/* <option value="fulfilled">Fulfilled</option>
                           <option value="accepted">Accepted</option>
                           <option value="rejected">Rejected</option>
                           <option value="pending">Pending</option>
                           <option value="stalled">Stalled</option>
-                          <option value="inprogress">In progress</option>
+                          <option value="inprogress">In progress</option> */}
                 </SelectInput>
-              </div> */}
+              </div>
 
                 <div className="md:col-span-5 text-right">
                   <div className="inline-flex items-end">

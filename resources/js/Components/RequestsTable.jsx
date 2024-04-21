@@ -3,10 +3,10 @@ import React from "react";
 import Paggination from "./Paggination";
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
-import { ChevronUpIcon , ChevronDownIcon } from '@heroicons/react/16/solid';
+import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
 import TableFooter from "./TableFooter";
 
-function RequestsTable({ requests, queryParams = null }) {
+function RequestsTable({ auth, requests, queryParams = null }) {
   queryParams = queryParams || {};
 
   // SEARCH FUNCTIONs
@@ -43,10 +43,13 @@ function RequestsTable({ requests, queryParams = null }) {
     if (!window.confirm("Are you sure you want to delete the request?")) {
       return;
     }
-        router.delete(route("request.destroy", request.id));
-
-
-  };
+    router.delete(route("request.destroy", request.id));
+  }
+  function editRequest(request) {
+    router.get(route("request.edit"), request.id);
+  }
+  // if the user is a purchaser show only accepted and fullfiled requests using filter
+  // console.log( requests.data);
 
   return (
     <div className="px-4 pt-6 ">
@@ -76,21 +79,27 @@ function RequestsTable({ requests, queryParams = null }) {
                         className="p-4  text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
                       >
                         <div className="flex items-center justify-between gap-1 cursor-pointer hover:text-gray-400	">
-
-                        ID
-                        <div>
-                        <ChevronUpIcon  className=
-                        {
-                          "w-4 " +
-                          ((queryParams.sort_field === "id" && queryParams.sort_direction === "asc") ? " text-blue-300" : "")
-                        }
-                          />
-                        <ChevronDownIcon className={
-                          "w-4 -mt-2 " +
-                          ((queryParams.sort_field == "id" && queryParams.sort_direction === "desc") ? " text-blue-300" : "")
-
-                          }/>
-                        </div>
+                          ID
+                          <div>
+                            <ChevronUpIcon
+                              className={
+                                "w-4 " +
+                                (queryParams.sort_field === "id" &&
+                                queryParams.sort_direction === "asc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                            <ChevronDownIcon
+                              className={
+                                "w-4 -mt-2 " +
+                                (queryParams.sort_field == "id" &&
+                                queryParams.sort_direction === "desc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                          </div>
                         </div>
                       </th>
 
@@ -100,20 +109,27 @@ function RequestsTable({ requests, queryParams = null }) {
                         className="p-4  text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
                       >
                         <div className="flex items-center justify-between gap-1 cursor-pointer hover:text-gray-400	">
-                        Request
-                        <div>
-                        <ChevronUpIcon  className=
-                        {
-                          "w-4 " +
-                          ((queryParams.sort_field === "item_name" && queryParams.sort_direction === "asc") ? " text-blue-300" : "")
-                        }
-                          />
-                        <ChevronDownIcon className={
-                          "w-4 -mt-2 " +
-                          ((queryParams.sort_field == "item_name" && queryParams.sort_direction === "desc") ? " text-blue-300" : "")
-
-                          }/>
-                                                  </div>
+                          Request
+                          <div>
+                            <ChevronUpIcon
+                              className={
+                                "w-4 " +
+                                (queryParams.sort_field === "item_name" &&
+                                queryParams.sort_direction === "asc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                            <ChevronDownIcon
+                              className={
+                                "w-4 -mt-2 " +
+                                (queryParams.sort_field == "item_name" &&
+                                queryParams.sort_direction === "desc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                          </div>
                         </div>
                       </th>
 
@@ -142,19 +158,27 @@ function RequestsTable({ requests, queryParams = null }) {
                         className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
                       >
                         <div className="flex items-center justify-between gap-1 cursor-pointer hover:text-gray-400	">
-                        Request Description
-                        <div>
-                        <ChevronUpIcon  className=
-                        {
-                          "w-4 " +
-                          ((queryParams.sort_field === "description" && queryParams.sort_direction === "asc") ? " text-blue-300" : "")
-                        }
-                          />
-                        <ChevronDownIcon className={
-                          "w-4 -mt-2 " +
-                          ((queryParams.sort_field == "description" && queryParams.sort_direction === "desc") ? " text-blue-300" : "")
-
-                          }/>                        </div>
+                          Request Description
+                          <div>
+                            <ChevronUpIcon
+                              className={
+                                "w-4 " +
+                                (queryParams.sort_field === "description" &&
+                                queryParams.sort_direction === "asc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                            <ChevronDownIcon
+                              className={
+                                "w-4 -mt-2 " +
+                                (queryParams.sort_field == "description" &&
+                                queryParams.sort_direction === "desc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />{" "}
+                          </div>
                         </div>
                       </th>
                       <th
@@ -163,20 +187,27 @@ function RequestsTable({ requests, queryParams = null }) {
                         className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
                       >
                         <div className="flex items-center justify-between gap-1 cursor-pointer hover:text-gray-400	">
-                        Quantity
-                        <div>
-                        <ChevronUpIcon  className=
-                        {
-                          "w-4 " +
-                          ((queryParams.sort_field === "quantity" && queryParams.sort_direction === "asc") ? " text-blue-300" : "")
-                        }
-                          />
-                        <ChevronDownIcon className={
-                          "w-4 -mt-2 " +
-                          ((queryParams.sort_field == "quantity" && queryParams.sort_direction === "desc") ? " text-blue-300" : "")
-
-                          }/>
-                        </div>
+                          Quantity
+                          <div>
+                            <ChevronUpIcon
+                              className={
+                                "w-4 " +
+                                (queryParams.sort_field === "quantity" &&
+                                queryParams.sort_direction === "asc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                            <ChevronDownIcon
+                              className={
+                                "w-4 -mt-2 " +
+                                (queryParams.sort_field == "quantity" &&
+                                queryParams.sort_direction === "desc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                          </div>
                         </div>
                       </th>
                       <th
@@ -185,20 +216,27 @@ function RequestsTable({ requests, queryParams = null }) {
                         className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
                       >
                         <div className="flex items-center justify-between gap-1 cursor-pointer hover:text-gray-400	">
-                        Date
-                        <div>
-                        <ChevronUpIcon  className=
-                        {
-                          "w-4 " +
-                          ((queryParams.sort_field === "created_at" && queryParams.sort_direction === "asc") ? " text-blue-300" : "")
-                        }
-                          />
-                        <ChevronDownIcon className={
-                          "w-4 -mt-2 " +
-                          ((queryParams.sort_field == "created_at" && queryParams.sort_direction === "desc") ? " text-blue-300" : "")
-
-                          }/>
-                        </div>
+                          Date
+                          <div>
+                            <ChevronUpIcon
+                              className={
+                                "w-4 " +
+                                (queryParams.sort_field === "created_at" &&
+                                queryParams.sort_direction === "asc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                            <ChevronDownIcon
+                              className={
+                                "w-4 -mt-2 " +
+                                (queryParams.sort_field == "created_at" &&
+                                queryParams.sort_direction === "desc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                          </div>
                         </div>
                       </th>
                       <th
@@ -207,28 +245,39 @@ function RequestsTable({ requests, queryParams = null }) {
                         className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
                       >
                         <div className="flex items-center justify-between gap-1 cursor-pointer hover:text-gray-400	">
-                        Status
-                        <div>
-                        <ChevronUpIcon  className=
-                        {
-                          "w-4 " +
-                          ((queryParams.sort_field === "status" && queryParams.sort_direction === "asc") ? " text-blue-300" : "")
-                        }
-                          />
-                        <ChevronDownIcon className={
-                          "w-4 -mt-2 " +
-                          ((queryParams.sort_field == "status" && queryParams.sort_direction === "desc") ? " text-blue-300" : "")
-
-                          }/>
-                        </div>
+                          Status
+                          <div>
+                            <ChevronUpIcon
+                              className={
+                                "w-4 " +
+                                (queryParams.sort_field === "status" &&
+                                queryParams.sort_direction === "asc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                            <ChevronDownIcon
+                              className={
+                                "w-4 -mt-2 " +
+                                (queryParams.sort_field == "status" &&
+                                queryParams.sort_direction === "desc"
+                                  ? " text-blue-300"
+                                  : "")
+                              }
+                            />
+                          </div>
                         </div>
                       </th>
-                      <th
-                        scope="col"
-                        className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
-                      >
-                        Action
-                      </th>
+                      {/* Check if it is a requester , treasury or purchaser */}
+                      {(auth.user.role === "purchaser" ||
+                        auth.user.role === "treasury") && (
+                        <th
+                          scope="col"
+                          className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                        >
+                          Action
+                        </th>
+                      )}
                     </tr>
                   </thead>
                   <thead className="bg-gray-50 dark:bg-gray-700">
@@ -251,20 +300,19 @@ function RequestsTable({ requests, queryParams = null }) {
                           }
                           onKeyPress={(e) => onKeyPress("name", e)}
                         />
-                        </th>
-                        <th
-                          scope="col"
-                          className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
-                        ></th>
-                        <th
-                          scope="col"
-                          className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
-                        ></th>
-                        <th
-                          scope="col"
-                          className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
-                        ></th>
-
+                      </th>
+                      <th
+                        scope="col"
+                        className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                      ></th>
+                      <th
+                        scope="col"
+                        className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                      ></th>
+                      <th
+                        scope="col"
+                        className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
+                      ></th>
 
                       <th
                         scope="col"
@@ -282,7 +330,10 @@ function RequestsTable({ requests, queryParams = null }) {
                         scope="col"
                         className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
                       >
-                        <SelectInput
+                        {/* The purchaser doesn't view it */}
+                        {!(auth.user.role === "purchaser") &&(
+
+                          <SelectInput
                           className="w-[100%]"
                           onChange={(e) =>
                             searchFieldChanged("status", e.target.value)
@@ -297,11 +348,16 @@ function RequestsTable({ requests, queryParams = null }) {
                           <option value="stalled">Stalled</option>
                           <option value="inprogress">In progress</option>
                         </SelectInput>
+                        )}
                       </th>
+                      {(auth.user.role === "purchaser" ||
+                        auth.user.role === "treasury") && (
+
                       <th
                         scope="col"
                         className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
                       ></th>
+                      )}
                     </tr>
                   </thead>
                   <tbody className="bg-white dark:bg-gray-800">
@@ -382,20 +438,26 @@ function RequestsTable({ requests, queryParams = null }) {
                             }
                           })()}
                         </td>
-                        <td className="p-4  text-sm font-normal  flex flex-col gap-2 justify-center items-center">
-                          <Link
-                            className="text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-blue-300 underline  hover:no-underline"
-                            href={route("request.edit", req.id)}
-                          >
-                            Edit
-                          </Link>
-                          <button
-                            className="text-gray-500  whitespace-nowrap  dark:text-gray-400 dark:hover:text-red-300 underline hover:no-underline"
-                            onClick={(e) => deleteRequest(req)}
-                          >
-                            Delete
-                          </button>
-                        </td>
+                        {/* check for the user */}
+                        {(auth.user.role === "purchaser" ||
+                          auth.user.role === "treasury") && (
+                          <td className="p-4  text-sm font-normal whitespace-nowrap !h-full">
+                            <Link
+                              className="text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-blue-300 underline  hover:no-underline"
+                              href={route("request.edit", req.id)}
+                            >
+                              Edit
+                            </Link>
+                            {(auth.user.role === "purchaser") && (
+                              <button
+                              className="text-gray-500 flex items-center  whitespace-nowrap  dark:text-gray-400 dark:hover:text-red-300 underline hover:no-underline"
+                              onClick={(e) => deleteRequest(req)}
+                            >
+                              Delete
+                            </button>
+                            )}
+                          </td>
+                        )}
                       </tr>
                     ))}
                   </tbody>
@@ -406,7 +468,7 @@ function RequestsTable({ requests, queryParams = null }) {
           </div>
         </div>
         {/* <!-- Card Footer --> */}
-      <TableFooter />
+        <TableFooter />
       </div>
       {/* <pre className="text-white">
         {JSON.stringify(requests,undefined,2)}
