@@ -86,7 +86,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 " +
                                 (queryParams.sort_field === "id" &&
                                 queryParams.sort_direction === "asc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -95,7 +95,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 -mt-2 " +
                                 (queryParams.sort_field == "id" &&
                                 queryParams.sort_direction === "desc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -116,7 +116,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 " +
                                 (queryParams.sort_field === "item_name" &&
                                 queryParams.sort_direction === "asc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -125,7 +125,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 -mt-2 " +
                                 (queryParams.sort_field == "item_name" &&
                                 queryParams.sort_direction === "desc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -165,7 +165,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 " +
                                 (queryParams.sort_field === "description" &&
                                 queryParams.sort_direction === "asc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -174,7 +174,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 -mt-2 " +
                                 (queryParams.sort_field == "description" &&
                                 queryParams.sort_direction === "desc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />{" "}
@@ -194,7 +194,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 " +
                                 (queryParams.sort_field === "quantity" &&
                                 queryParams.sort_direction === "asc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -203,7 +203,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 -mt-2 " +
                                 (queryParams.sort_field == "quantity" &&
                                 queryParams.sort_direction === "desc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -223,7 +223,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 " +
                                 (queryParams.sort_field === "created_at" &&
                                 queryParams.sort_direction === "asc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -232,7 +232,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 -mt-2 " +
                                 (queryParams.sort_field == "created_at" &&
                                 queryParams.sort_direction === "desc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -252,7 +252,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 " +
                                 (queryParams.sort_field === "status" &&
                                 queryParams.sort_direction === "asc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -261,7 +261,7 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                                 "w-4 -mt-2 " +
                                 (queryParams.sort_field == "status" &&
                                 queryParams.sort_direction === "desc"
-                                  ? " text-blue-300"
+                                  ? " text-indigo-300"
                                   : "")
                               }
                             />
@@ -269,8 +269,10 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                         </div>
                       </th>
                       {/* Check if it is a requester , treasury or purchaser */}
-                      {(auth.user.role === "purchaser" ||
-                        auth.user.role === "treasury") && (
+                      {(auth.user.role === "admin"  ||
+                        auth.user.role === "purchaser" ||
+                        auth.user.role === "treasury" ||
+                        auth.user.role === "requester") && (
                         <th
                           scope="col"
                           className="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white"
@@ -350,8 +352,10 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                         </SelectInput>
                         )}
                       </th>
-                      {(auth.user.role === "purchaser" ||
-                        auth.user.role === "treasury") && (
+                      {(auth.user.role === "admin" ||
+                        auth.user.role === "purchaser" ||
+                        auth.user.role === "treasury" ||
+                        auth.user.role === "requester") && (
 
                       <th
                         scope="col"
@@ -439,16 +443,18 @@ function RequestsTable({ auth, requests, queryParams = null }) {
                           })()}
                         </td>
                         {/* check for the user */}
-                        {(auth.user.role === "purchaser" ||
-                          auth.user.role === "treasury") && (
+                        {(auth.user.role === "admin" ||
+                          auth.user.role === "purchaser" ||
+                          auth.user.role === "treasury" ||
+                          auth.user.role === "requester") && (
                           <td className="p-4  text-sm font-normal whitespace-nowrap !h-full">
                             <Link
-                              className="text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-blue-300 underline  hover:no-underline"
+                              className="text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-indigo-300 underline  hover:no-underline"
                               href={route("request.edit", req.id)}
                             >
                               Edit
                             </Link>
-                            {(auth.user.role === "purchaser") && (
+                            {(auth.user.role === "admin") && (
                               <button
                               className="text-gray-500 flex items-center  whitespace-nowrap  dark:text-gray-400 dark:hover:text-red-300 underline hover:no-underline"
                               onClick={(e) => deleteRequest(req)}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityLogController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
@@ -13,11 +14,10 @@ Route::redirect('/', '/dashboard');
 
 
 Route::middleware(['auth','verified'])->group(function(){
-    Route::get('/dashboard', fn() => Inertia::render('Dashboard'))
-            ->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('request',RequestController::class);
     Route::resource('user',UserController::class);
-    Route::resource('activity-log',ActivityLogController::class);
 
 
 });

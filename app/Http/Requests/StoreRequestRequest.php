@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreRequestRequest extends FormRequest
 {
@@ -25,7 +26,6 @@ class StoreRequestRequest extends FormRequest
             "item_name" => ["required" , "max:255"],
             "description" => ["nullable","string"],
             "quantity" => ["required" , "integer" ],
-            "status" => ["required"]
         ];
     }
 }

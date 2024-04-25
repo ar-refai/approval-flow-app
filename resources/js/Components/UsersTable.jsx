@@ -65,7 +65,7 @@ function UsersTable({users}) {
 
 
                       <td className="p-4 text-sm font-normal  flex flex-col">
-                      <Link className='text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-blue-300 underline  hover:no-underline' href={route("request.edit",user.id)}>Edit User</Link>
+                      <Link className='text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-indigo-300 underline  hover:no-underline' href={route("request.edit",user.id)}>Edit User</Link>
                       <Link className='text-gray-500 whitespace-nowrap  dark:text-gray-400 dark:hover:text-red-300 underline hover:no-underline' href={route("request.destroy",user.id)}>Delete User</Link>
                       </td>
                     </tr>

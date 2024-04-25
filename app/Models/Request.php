@@ -20,6 +20,9 @@ class Request extends Model
         'description',
         'quantity',
         'status',
+        'forward_to_purchaser',
+        'forward_to_requester',
+
     ];
 
     /**

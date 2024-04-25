@@ -1,10 +1,11 @@
 import { useState } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
+import ApplicationLogo from "../../../assets/png/logo-no-background.png";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 import Sidebar from "@/Components/RequestsTable";
+import ProfileImage from '../../../assets/profile.jpg';
 
 export default function Authenticated({ user, header, children }) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -18,7 +19,11 @@ export default function Authenticated({ user, header, children }) {
             <div className="flex">
               <div className="shrink-0 flex items-center">
                 <Link href="/">
-                  <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                  {/* <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" /> */}
+                  <img
+                  className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"
+                  src={ApplicationLogo}
+                  alt="logo" />
                 </Link>
               </div>
 
@@ -35,18 +40,16 @@ export default function Authenticated({ user, header, children }) {
                 >
                   Requests
                 </NavLink>
-                <NavLink
+                {user.role === "admin" &&(
+
+                  <NavLink
                   href={route("user.index")}
                   active={route().current("user.index")}
-                >
+                  >
                   Users
                 </NavLink>
-                <NavLink
-                  href={route("activity-log.index")}
-                  active={route().current("activity-log.index")}
-                >
-                  Activity Logs
-                </NavLink>
+                )}
+
 
               </div>
             </div>
@@ -60,6 +63,9 @@ export default function Authenticated({ user, header, children }) {
                         type="button"
                         className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
                       >
+                        <div className="bg-indigo-200 h-8 w-8 rounded-full mx-2">
+                          <img src={ProfileImage} className="rounded-full" alt="..."/>
+                        </div>
                         {user.name}
 
                         <svg

@@ -26,7 +26,11 @@ class UpdateRequestRequest extends FormRequest
             "item_name" => ["required" , "max:255"],
             "description" => ["nullable","string"],
             "quantity" => ["required" , "integer" ],
-            "status" => ['required', Rule::in(['fulfilled','accepted','inprogress','pending','stalled','rejected'])]
+            'status' => ['required', Rule::in(['fulfilled','accepted','inprogress','pending','stalled','rejected'])],
+            "forward_to_requester" => ["nullable","boolean"],
+            "forward_to_purchaser" => ["nullable","boolean"],
+
         ];
+        // ['fulfilled','accepted','inprogress','pending','stalled','rejected']
     }
 }

@@ -23,6 +23,8 @@ class RequestResource extends JsonResource
             'description' => $this->description,
             'quantity' => $this->quantity,
             'status' => $this->status,
+            'forward_to_purchaser'=> $this->forward_to_purchaser,
+            'forward_to_requester'=> $this->forward_to_requester,
             'created_at' => (new Carbon($this->created_at))->format('Y-m-d'),
             'updated_at' => (new Carbon($this->updated_at))->format('Y-m-d')
         ];

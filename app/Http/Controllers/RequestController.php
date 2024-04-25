@@ -35,6 +35,7 @@ class RequestController extends Controller
         // Purchaser Sees Fulfiled requests and accepteed ones
         if(Auth::user()->role === "purchaser"){
             $requests = $query
+            ->where("forward_to_purchaser","1")
             ->where("status", "fulfilled")
             ->orWhere("status", "accepted")
             ->orderBy($sortField, $sortDirection)
@@ -43,6 +44,7 @@ class RequestController extends Controller
         // Requester Sees his requested ones
         elseif(Auth::user()->role === "requester"){
             $requests = $query
+            ->where("forward_to_requester","1")
             ->where("user_id", Auth::user()->id)
             ->orderBy($sortField, $sortDirection)
             ->paginate(10);
@@ -71,6 +73,8 @@ class RequestController extends Controller
     {
         // Validate the incoming request data
         $data = $request->validated();
+        $data['user_id'] = Auth::user()->id;
+
         // Process the validated data (you can save it to the database, etc.)
         // For example, if you want to create a new request record:
         $request = Request::create($data);

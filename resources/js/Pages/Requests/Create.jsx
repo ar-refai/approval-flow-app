@@ -18,7 +18,7 @@ const Create = ({ auth }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    console.log("Form submitted");
     post(route("request.store"));
   };
 
@@ -114,7 +114,6 @@ const Create = ({ auth }) => {
                     <div className="flex justify-between items-center">
                       <button
                       type="submit"
-                      name="submit"
                         className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-white rounded-md shadow-2xl group"
                       >
                         <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-0 bg-gradient-to-br from-[#274060]  to-[#1B2845] group-hover:opacity-100"></span>
