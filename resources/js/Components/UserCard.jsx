@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileImage from '../../../assets/profile.jpg';
+import ProfileImage from '../../../assets/png/avatar.png';
 const UserCard = ({auth}) => {
   return (
     <div className="dark:bg-gray-800 gap-6 rounded-xl border dark:border-gray-700 flex items-center justify-center">

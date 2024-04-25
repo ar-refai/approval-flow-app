@@ -4,8 +4,7 @@ import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
-import Sidebar from "@/Components/RequestsTable";
-import ProfileImage from '../../../assets/profile.jpg';
+import ProfileImage from '../../../assets/png/avatar.png';
 
 export default function Authenticated({ user, header, children }) {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =

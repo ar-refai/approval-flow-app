@@ -33,7 +33,7 @@ const CardList = ({ auth, latest, type }) => {
         >
           {type === "users" &&
             latest.map((user) => (
-              <li className="py-3 sm:py-4">
+              <li key={user.email} className="py-3 sm:py-4">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <img
@@ -51,7 +51,7 @@ const CardList = ({ auth, latest, type }) => {
                     </p>
                   </div>
                   <div className="inline-flex mx-2 items-center text-base font-semibold text-gray-900 dark:text-gray-300">
-                  <span class="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">{user.role}</span>
+                  <span className="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">{user.role}</span>
 
 
                   </div>
@@ -61,7 +61,7 @@ const CardList = ({ auth, latest, type }) => {
 
           {type === "requests" &&
             latest.map((request) => (
-              <li className="py-3 sm:py-4">
+              <li key={request.item_name}  className="py-3 sm:py-4">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <img
@@ -79,7 +79,7 @@ const CardList = ({ auth, latest, type }) => {
                     </p>
                   </div>
                   <div className="mx-2 inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  <span class="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300"> Q :{request.quantity}</span>
+                  <span className="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300"> Q :{request.quantity}</span>
 
 
                   </div>

@@ -19,9 +19,9 @@ const Card = ({ count, type }) => {
         <h5 className="mb-2 mt-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
           Number Of {type === "requests" ? "Requests" : "Users"}
         </h5>
-        <div class="flex gap-2 items-center justify-center">
-                    <dt class="mb-2 text-3xl text-gray-400 font-extrabold ">{count}+</dt>
-                    <dd class="text-gray-500 dark:text-gray-400 ">
+        <div className="flex gap-2 items-center justify-center">
+                    <dt className="mb-2 text-3xl text-gray-400 font-extrabold ">{count}+</dt>
+                    <dd className="text-gray-500 dark:text-gray-400 ">
                     {type === "requests" && ("Request")}
                     {type === "users" && ("User")}
 
