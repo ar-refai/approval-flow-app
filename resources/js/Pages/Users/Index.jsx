@@ -1,12 +1,13 @@
 import Table from "@/Components/UsersTable";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import React , {useState ,useEffect} from "react";
 
 const Index = ({ auth, users, queryParams, success }) => {
   const [closeSuccessState, setCloseSuccessState] = useState(false);
   // console.log(users);
-
+  if(auth.user.role !== 'admin' )
+    router.get(route('dashboard'));
 
   return (
     <Authenticated

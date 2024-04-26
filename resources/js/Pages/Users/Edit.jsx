@@ -7,7 +7,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import React from "react";
 
 const Edit = ({ auth, user }) => {
-  console.log(user);
+  // console.log(user);
   const { data, setData, put, errors, reset } = useForm({
     id: user.data.id || "",
     name: user.data.name || "",
@@ -17,6 +17,7 @@ const Edit = ({ auth, user }) => {
     password_confirmation: user.data.password_confirmation || "",
     _method: "PUT"
   });
+  // console.log(errors)
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -95,7 +96,7 @@ const Edit = ({ auth, user }) => {
                     value={data.password}
                     onChange={(e) => setData("password", e.target.value)}
                   />
-                  <InputError className="mt-2" message={errors.name} />
+                  <InputError className="mt-2" message={errors.password} />
                 </div>
                 <div className="md:col-span-5">
                   <InputLabel className="text-gray-200" htmlFor="password_confirmation">
@@ -110,7 +111,7 @@ const Edit = ({ auth, user }) => {
                     value={data.password_confirmation}
                     onChange={(e) => setData("password_confirmation", e.target.value)}
                   />
-                  <InputError className="mt-2" message={errors.name} />
+                  <InputError className="mt-2" message={errors.password_confirmation} />
                 </div>
                 <div className="md:col-span-1 text-gray-200">
                   <InputLabel className="text-gray-200" htmlFor="role">

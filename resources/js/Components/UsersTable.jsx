@@ -2,12 +2,10 @@ import { Link, router } from "@inertiajs/react";
 import React from "react";
 import Paggination from "./Paggination";
 import TextInput from "./TextInput";
-import SelectInput from "./SelectInput";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
 import TableFooter from "./TableFooter";
 
 function UsersTable({ auth, users, queryParams = null }) {
-  // console.log(users);
   queryParams = queryParams || {};
 
   // SEARCH FUNCTIONs
@@ -31,15 +29,16 @@ function UsersTable({ auth, users, queryParams = null }) {
   // SORT FUNCTIONs
   const sortChanged = (field) => {
     if (field === queryParams.sort_field)
-      queryParams.sort_direction =
-        queryParams.sort_direction === "asc" ? "desc" : "asc";
-    else {
-      queryParams.sort_field = field;
-      queryParams.sort_direction = "asc";
-    }
-    router.get(route("user.index"), queryParams);
-  };
-  // DELETE Users
+    queryParams.sort_direction =
+  queryParams.sort_direction === "asc" ? "desc" : "asc";
+  else {
+    queryParams.sort_field = field;
+    queryParams.sort_direction = "asc";
+  }
+  router.get(route("user.index"), queryParams);
+};
+// console.log(queryParams);
+// DELETE Users
   function deleteUser(user) {
     if (!window.confirm("Are you sure you want to delete the User?")) {
       return;

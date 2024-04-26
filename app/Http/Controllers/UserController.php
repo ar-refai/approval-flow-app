@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
-use App\Models\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -51,6 +50,7 @@ class UserController extends Controller
     {
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
+        $data['email_verified_at'] = time();
         $request = User::create($data);
 
         // Redirect to the intended route after processing the form submission
@@ -82,6 +82,11 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
+        $password = $data['password'] ?? null;
+        if($password)
+            $data['password'] = bcrypt($password);
+        else
+            unset($data['password']);
         $user->update($data);
         return to_route('user.index')
                 ->with("success", "The user \"$user->name\" was updated successfully");

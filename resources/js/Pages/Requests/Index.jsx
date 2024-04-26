@@ -5,7 +5,7 @@ import React , {useState ,useEffect} from "react";
 
 const Index = ({ auth, requests, queryParams, success }) => {
   const [closeSuccessState, setCloseSuccessState] = useState(false);
-
+  // console.log(queryParams);
 
 
   return (

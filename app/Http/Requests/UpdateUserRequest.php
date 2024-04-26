@@ -23,12 +23,19 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            "name" => ['required','string' , "max:255"],
-            "password" => ['required' , "confirmed",Password::min(8)->letters()->symbols()],
-            "email" => ['required', 'email'],
-            'role' => ['required', Rule::in(['admin','requester','treasury','purchaser'])],
+        $user = $this->route('user'); // Get the user being updated
+        $userId = $user ? $user->id : null; // Get the user ID
 
+        return [
+            "name" => ['required', 'string', 'max:255'],
+            "password" => ['nullable', 'confirmed', Password::min(8)->letters()->symbols()],
+            "email" => [
+                'required',
+                'string',
+                'email',
+                Rule::unique('users')->ignore($userId),
+            ],
+            'role' => ['required', Rule::in(['admin', 'requester', 'treasury', 'purchaser'])],
         ];
     }
 }

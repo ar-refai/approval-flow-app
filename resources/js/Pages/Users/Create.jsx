@@ -19,7 +19,7 @@ const Create = ({ auth }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    // console.log("Form submitted");
     post(route("user.store"));
   };
 
