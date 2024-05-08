@@ -48,7 +48,12 @@ export default function Authenticated({ user, header, children }) {
                   Users
                 </NavLink>
                 )}
-
+                <NavLink
+                  href={route("template.index")}
+                  active={route().current("template.index")}
+                >
+                  Template
+                </NavLink>
 
               </div>
             </div>

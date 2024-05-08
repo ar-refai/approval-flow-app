@@ -4,6 +4,7 @@ use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\ActivityLog;
@@ -19,6 +20,7 @@ Route::middleware(['auth','verified'])->group(function(){
 
     Route::resource('request',RequestController::class);
     Route::resource('user',UserController::class)->middleware(AdminMiddleware::class);
+    Route::resource('template',TemplateController::class);
 
 
 });
