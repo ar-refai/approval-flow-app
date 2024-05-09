@@ -62,7 +62,7 @@ const Edit = ({ auth, request }) => {
                 className="grid gap-4 lg:gap-y-12 lg:mt-12 items-center gap-y-2 text-sm grid-cols-1 md:grid-cols-5"
               >
                 <div className="md:col-span-5">
-                  <InputLabel className="text-gray-200" htmlFor="req_name">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="req_name">
                     Request Title
                   </InputLabel>
                   <TextInput
@@ -78,7 +78,7 @@ const Edit = ({ auth, request }) => {
                   <InputError className="mt-2" message={errors.item_name} />
                 </div>
                 <div className="md:col-span-5 text-gray-200">
-                  <InputLabel className="text-gray-200" htmlFor="req_desc">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="req_desc">
                     Request Description
                   </InputLabel>
                   <TextAreaInput
@@ -94,7 +94,7 @@ const Edit = ({ auth, request }) => {
                 </div>
 
                 <div className="md:col-span-1 text-gray-200">
-                  <InputLabel className="text-gray-200" htmlFor="quantity">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="quantity">
                     Quantity
                   </InputLabel>
                   <TextInput
@@ -112,7 +112,7 @@ const Edit = ({ auth, request }) => {
                 </div>
 
                 <div className="md:col-span-4">
-                  <InputLabel className="text-gray-200" htmlFor="status">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="status">
                     status
                   </InputLabel>
                   <SelectInput
@@ -150,7 +150,7 @@ const Edit = ({ auth, request }) => {
                       {console.log(data)} */}
 
                       <label
-                        htmlFor="purchaser_check"
+                        htmlhtmlFor="purchaser_check"
                         className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                       >
                         Forward To Purchaser
@@ -169,7 +169,7 @@ const Edit = ({ auth, request }) => {
                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                       />
                       <label
-                        htmlFor="requester_check"
+                        htmlhtmlFor="requester_check"
                         className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                       >
                         Forward To Requester

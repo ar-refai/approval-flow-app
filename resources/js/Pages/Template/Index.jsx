@@ -1,6 +1,14 @@
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import Table from "./../../Library/Components/Table";
+import Table from "./Table";
+import Buttons from "./Buttons";
+import NotificationCards from "./NotificationCards";
+import Typography from "./Typography";
+import Tooltips from "./Tooltips";
+import ExampleWrapper from './ExampleWrapper';
+import TableUsers from "./TableUsers";
+import ColorPalette from "./ColorPalette";
+
 const index = ({ auth }) => {
   return (
     <Authenticated
@@ -14,10 +22,16 @@ const index = ({ auth }) => {
       </div>
     }>
       <Head title="Library" />
-      <div>
-        <Table/>
 
-      </div>
+        <Typography/>
+        <Table/>
+        <Buttons/>
+        <NotificationCards/>
+        <Tooltips/>
+        <ExampleWrapper/>
+        <TableUsers/>
+        <ColorPalette/>
+
 
     </Authenticated>
   )

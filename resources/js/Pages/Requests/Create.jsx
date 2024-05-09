@@ -50,7 +50,7 @@ const Create = ({ auth }) => {
               onSubmit={onSubmit}
               className="grid gap-4 lg:gap-y-12 lg:mt-12 items-center gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                 <div className="md:col-span-5">
-                  <InputLabel className="text-gray-200" htmlFor="req_name">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="req_name">
                     Request Title
                   </InputLabel>
                   <TextInput
@@ -65,7 +65,7 @@ const Create = ({ auth }) => {
                   <InputError className="mt-2" message={errors.item_name} />
                 </div>
                 <div className="md:col-span-5 text-gray-200">
-                  <InputLabel className="text-gray-200" htmlFor="req_desc">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="req_desc">
                     Request Description
                   </InputLabel>
                   <TextAreaInput
@@ -80,7 +80,7 @@ const Create = ({ auth }) => {
                 </div>
 
                 <div className="md:col-span-1 text-gray-200">
-                  <InputLabel className="text-gray-200" htmlFor="quantity">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="quantity">
                     Quantity
                   </InputLabel>
                   <TextInput
@@ -97,7 +97,7 @@ const Create = ({ auth }) => {
                 </div>
 
                 {/* <div className="md:col-span-4">
-                <InputLabel className="text-gray-200" htmlFor="status">status</InputLabel>
+                <InputLabel className="text-gray-200" htmlhtmlFor="status">status</InputLabel>
                 <SelectInput name="status" id="status" className="h-10 border mt-1 rounded px-4 w-full bg-gray-700"  >
                           <option value="">Status</option>
                           <option value="fulfilled">Fulfilled</option>

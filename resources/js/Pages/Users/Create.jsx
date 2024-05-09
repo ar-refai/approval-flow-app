@@ -53,7 +53,7 @@ const Create = ({ auth }) => {
               onSubmit={onSubmit}
               className="grid gap-4 lg:gap-y-12 lg:mt-12 items-center gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                 <div className="md:col-span-5">
-                  <InputLabel className="text-gray-200" htmlFor="user_name">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="user_name">
                     User Name
                   </InputLabel>
                   <TextInput
@@ -68,7 +68,7 @@ const Create = ({ auth }) => {
                   <InputError className="mt-2" message={errors.name} />
                 </div>
                 <div className="md:col-span-5 text-gray-200">
-                  <InputLabel className="text-gray-200" htmlFor="user_email">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="user_email">
                     User Email
                   </InputLabel>
                   <TextInput
@@ -83,7 +83,7 @@ const Create = ({ auth }) => {
                   <InputError className="mt-2" message={errors.email} />
                 </div>
                 <div className="md:col-span-5">
-                  <InputLabel className="text-gray-200" htmlFor="password">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="password">
                     Password
                   </InputLabel>
                   <TextInput
@@ -98,7 +98,7 @@ const Create = ({ auth }) => {
                   <InputError className="mt-2" message={errors.name} />
                 </div>
                 <div className="md:col-span-5">
-                  <InputLabel className="text-gray-200" htmlFor="password_confirmation">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="password_confirmation">
                     Password Confirmation
                   </InputLabel>
                   <TextInput
@@ -113,7 +113,7 @@ const Create = ({ auth }) => {
                   <InputError className="mt-2" message={errors.name} />
                 </div>
                 <div className="md:col-span-1 text-gray-200">
-                  <InputLabel className="text-gray-200" htmlFor="role">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="role">
                     Role
                   </InputLabel>
                   <SelectInput
@@ -134,7 +134,7 @@ const Create = ({ auth }) => {
                     </SelectInput>
                   <InputError className="mt-2" message={errors.role} />
                 {/* <div className="md:col-span-4">
-                <InputLabel className="text-gray-200" htmlFor="status">status</InputLabel>
+                <InputLabel className="text-gray-200" htmlhtmlFor="status">status</InputLabel>
                 <SelectInput name="status" id="status" className="h-10 border mt-1 rounded px-4 w-full bg-gray-700"  >
                           <option value="">Status</option>
                           <option value="fulfilled">Fulfilled</option>

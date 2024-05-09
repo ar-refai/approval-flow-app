@@ -1,12 +1,12 @@
 import TextInput from "./TextInput";
 import SelectInput from "./SelectInput";
-import TableFooter from "./TableFooter";
+import TableFooter from "../../Components/TableFooter";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
 
 export default function Table() {
-  return (
+  return ( <>
     <div className="px-4 pt-6 ">
-      <div className="p-4  bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+      <div className=" mt-4 p-4  bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
         {/* <!-- Card header --> */}
         <div className="items-center justify-between lg:flex ">
           <div className="mb-4 lg:mb-0">
@@ -479,7 +479,9 @@ export default function Table() {
         {/* <!-- Card Footer --> */}
         <TableFooter />
       </div>
+
     </div>
+    </>
   );
 }
 

@@ -54,7 +54,7 @@ const Edit = ({ auth, user }) => {
               onSubmit={onSubmit}
               className="grid gap-4 lg:gap-y-12 lg:mt-12 items-center gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                 <div className="md:col-span-5">
-                  <InputLabel className="text-gray-200" htmlFor="user_name">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="user_name">
                     User Name
                   </InputLabel>
                   <TextInput
@@ -69,7 +69,7 @@ const Edit = ({ auth, user }) => {
                   <InputError className="mt-2" message={errors.name} />
                 </div>
                 <div className="md:col-span-5 text-gray-200">
-                  <InputLabel className="text-gray-200" htmlFor="user_email">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="user_email">
                     User Email
                   </InputLabel>
                   <TextInput
@@ -84,7 +84,7 @@ const Edit = ({ auth, user }) => {
                   <InputError className="mt-2" message={errors.email} />
                 </div>
                 <div className="md:col-span-5">
-                  <InputLabel className="text-gray-200" htmlFor="password">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="password">
                     Password
                   </InputLabel>
                   <TextInput
@@ -99,7 +99,7 @@ const Edit = ({ auth, user }) => {
                   <InputError className="mt-2" message={errors.password} />
                 </div>
                 <div className="md:col-span-5">
-                  <InputLabel className="text-gray-200" htmlFor="password_confirmation">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="password_confirmation">
                     Password Confirmation
                   </InputLabel>
                   <TextInput
@@ -114,7 +114,7 @@ const Edit = ({ auth, user }) => {
                   <InputError className="mt-2" message={errors.password_confirmation} />
                 </div>
                 <div className="md:col-span-1 text-gray-200">
-                  <InputLabel className="text-gray-200" htmlFor="role">
+                  <InputLabel className="text-gray-200" htmlhtmlFor="role">
                     Role
                   </InputLabel>
                   <SelectInput
